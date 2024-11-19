@@ -1,5 +1,6 @@
-﻿using WebShop.Notifications;
-using WebShop.Repositories;
+﻿using WebShop.Entities;
+using WebShop.Interfaces;
+using WebShop.Notifications;
 
 namespace WebShop.UnitOfWork
 {
@@ -25,6 +26,11 @@ namespace WebShop.UnitOfWork
         public void NotifyProductAdded(Product product)
         {
             _productSubject.Notify(product);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

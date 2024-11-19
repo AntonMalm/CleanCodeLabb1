@@ -1,9 +1,9 @@
-﻿using WebShop.Repositories;
+﻿using WebShop.Entities;
 
 namespace WebShop.UnitOfWork
 {
     // Gränssnitt för Unit of Work
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
          // Repository för produkter
          // Sparar förändringar (om du använder en databas)

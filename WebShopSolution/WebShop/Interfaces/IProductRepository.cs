@@ -1,4 +1,6 @@
-﻿namespace WebShop.Repositories
+﻿using WebShop.Entities;
+
+namespace WebShop.Interfaces
 {
     // Gränssnitt för produktrepositoryt enligt Repository Pattern
     public interface IProductRepository
