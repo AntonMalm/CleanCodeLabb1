@@ -7,7 +7,7 @@ using WebShop.Entities;
 
 namespace WebShop.DataAccess.Repositories.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IRepository<Order>
     {
         Order GetMostRecentOrder (int orderId);
     }

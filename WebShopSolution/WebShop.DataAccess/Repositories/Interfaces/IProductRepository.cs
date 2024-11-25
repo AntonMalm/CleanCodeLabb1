@@ -3,8 +3,13 @@
 namespace WebShop.DataAccess.Repositories.Interfaces
 {
     // Gränssnitt för produktrepositoryt enligt Repository Pattern
-    public interface IProductRepository
-    {
 
+    namespace WebShop.DataAccess.Repositories.Interfaces
+    {
+        public interface IProductRepository : IRepository<Product>
+        {
+            // Add specific methods for Product if needed
+        }
     }
+
 }

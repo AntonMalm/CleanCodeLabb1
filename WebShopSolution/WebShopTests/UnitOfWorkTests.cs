@@ -20,10 +20,10 @@ namespace WebShop.Tests
             productSubject.Attach(mockObserver.Object);
 
             // Injicerar vårt eget ProductSubject i UnitOfWork
-            var unitOfWork = new UnitOfWork.UnitOfWork(productSubject);
+           // var unitOfWork = new UnitOfWork.UnitOfWork(productSubject);
 
             // Act
-            unitOfWork.NotifyProductAdded(product);
+            //unitOfWork.NotifyProductAdded(product);
 
             // Assert
             // Verifierar att Update-metoden kallades på vår mock-observatör

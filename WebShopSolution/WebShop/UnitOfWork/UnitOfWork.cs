@@ -1,36 +1,52 @@
-﻿using WebShop.Entities;
-using WebShop.Interfaces;
+﻿using WebShop.DataAccess;
+using WebShop.DataAccess.Repositories.Interfaces;
+using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
+using WebShop.Entities;
 using WebShop.Notifications;
 
 namespace WebShop.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        // Hämta produkter från repository
         public IProductRepository Products { get; private set; }
+        public IOrderRepository Orders { get; private set; }
+        public ICustomerRepository Customers { get; private set; }
 
         private readonly ProductSubject _productSubject;
+        private readonly WebShopDbContext _context; // Assuming you're using Entity Framework Core
 
-        // Konstruktor används för tillfället av Observer pattern
-        public UnitOfWork(ProductSubject productSubject = null)
+        public UnitOfWork(
+            IProductRepository productRepository,
+            IOrderRepository orderRepository,
+            ICustomerRepository customerRepository,
+            WebShopDbContext context, 
+            ProductSubject productSubject = null)
         {
-            Products = null;
-
-            // Om inget ProductSubject injiceras, skapa ett nytt
+            Products = productRepository;
+            Orders = orderRepository;
+            Customers = customerRepository;
+            _context = context;
             _productSubject = productSubject ?? new ProductSubject();
-
-            // Registrera standardobservatörer
             _productSubject.Attach(new EmailNotification());
         }
 
+        // Method to notify observers when a product is added
         public void NotifyProductAdded(Product product)
         {
             _productSubject.Notify(product);
         }
 
+        // Method to save changes to the database
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        // Dispose method for cleanup
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }
+
