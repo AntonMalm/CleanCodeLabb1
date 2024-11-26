@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 using WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.Entities;
@@ -7,15 +9,19 @@ namespace WebShop.DataAccess.Repositories
 {
     public class OrderRepository : Repository<Order>, IOrderRepository
     {
+        private readonly WebShopDbContext _context;
         public OrderRepository(WebShopDbContext context) : base(context)
         {
+            _context = context;
         }
 
-        // Add any additional methods specific to Product if needed
-        public Order GetMostRecentOrder(int orderId)
+        public Order GetMostRecentOrder()
         {
-            throw new NotImplementedException();
+            return _context.Set<Order>()
+                .OrderByDescending(order => order.Id)
+                .FirstOrDefault();
         }
+
     }
 
 }

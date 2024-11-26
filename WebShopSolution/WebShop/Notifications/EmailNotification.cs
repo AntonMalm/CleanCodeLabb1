@@ -1,15 +1,27 @@
 ﻿using WebShop.Entities;
+using WebShop.UnitOfWork;
 
 namespace WebShop.Notifications
 {
-    // En konkret observatör som skickar e-postmeddelanden
+    // Observer that uses UnitOfWork to send email notifications
     public class EmailNotification : INotificationObserver
     {
-        public void Update(Product product)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public EmailNotification(IUnitOfWork unitOfWork)
         {
-            // Här skulle du implementera logik för att skicka ett e-postmeddelande
-            // För enkelhetens skull skriver vi ut till konsolen
-            Console.WriteLine($"Email Notification: New product added - {product.Name}");
+            _unitOfWork = unitOfWork;
         }
+
+        public async void Update(Product product)
+        {
+            var customers = await _unitOfWork.Customers.GetAllAsync(); // Assuming GetAllAsync exists
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"Email sent to {customer.Name}: New product - {product.Name}");
+            }
+        }
+
     }
 }
+

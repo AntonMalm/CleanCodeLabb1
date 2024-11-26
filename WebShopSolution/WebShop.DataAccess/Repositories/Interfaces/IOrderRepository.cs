@@ -9,6 +9,6 @@ namespace WebShop.DataAccess.Repositories.Interfaces
 {
     public interface IOrderRepository : IRepository<Order>
     {
-        Order GetMostRecentOrder (int orderId);
+        Order GetMostRecentOrder ();
     }
 }

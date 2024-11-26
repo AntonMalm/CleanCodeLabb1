@@ -1,17 +1,14 @@
-using WebShop.Entities;
-using WebShop.Notifications;
-using WebShop.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using WebShop.DataAccess;
 using WebShop.DataAccess.Repositories;
 using WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json.Serialization;
+using WebShop.Notifications;
+using WebShop.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add DbContext to DI container with the connection string from appsettings.json
 builder.Services.AddDbContext<WebShopDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WebShopDb"))
 );
@@ -31,8 +28,11 @@ builder.Services.AddTransient<INotificationObserver, EmailNotification>();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.ReferenceHandler = null; 
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
+
 
 // Swagger/OpenAPI configuration
 builder.Services.AddEndpointsApiExplorer();

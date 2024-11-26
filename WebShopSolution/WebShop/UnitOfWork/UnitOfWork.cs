@@ -19,7 +19,7 @@ namespace WebShop.UnitOfWork
             IProductRepository productRepository,
             IOrderRepository orderRepository,
             ICustomerRepository customerRepository,
-            WebShopDbContext context, 
+            WebShopDbContext context,
             ProductSubject productSubject = null)
         {
             Products = productRepository;
@@ -27,8 +27,9 @@ namespace WebShop.UnitOfWork
             Customers = customerRepository;
             _context = context;
             _productSubject = productSubject ?? new ProductSubject();
-            _productSubject.Attach(new EmailNotification());
+            _productSubject.Attach(new EmailNotification(this));
         }
+
 
         // Method to notify observers when a product is added
         public void NotifyProductAdded(Product product)
@@ -39,7 +40,17 @@ namespace WebShop.UnitOfWork
         // Method to save changes to the database
         public async Task SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         // Dispose method for cleanup
@@ -49,4 +60,3 @@ namespace WebShop.UnitOfWork
         }
     }
 }
-

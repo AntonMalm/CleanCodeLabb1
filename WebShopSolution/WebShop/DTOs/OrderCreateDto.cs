@@ -2,7 +2,7 @@
 
 public class OrderCreateDTO
 {
-    public int CustomerId { get; set; } // Only CustomerId, not full Customer object
-    public List<OrderItemCreateDTO> OrderItems { get; set; }  // Only ProductId and other details
+    public int CustomerId { get; set; }
+    public List<OrderItemCreateDTO> OrderItems { get; set; }
     public double TotalPrice { get; set; }
 }

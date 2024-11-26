@@ -9,6 +9,6 @@ namespace WebShop.DataAccess.Repositories.Interfaces
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        Customer GetCustomerBySpecificCountry(string country);
+        IEnumerable<Customer> GetCustomerBySpecificCountry(string country);
     }
 }

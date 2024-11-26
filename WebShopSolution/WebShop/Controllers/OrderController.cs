@@ -72,13 +72,12 @@ namespace WebShop.Controllers
                     ProductId = orderItemDto.ProductId,
                     Quantity = orderItemDto.Quantity,
                     Price = orderItemDto.Price,
-                    Order = order  // This will link the Order with the OrderItem
+                    Order = order
                 };
 
                 order.OrderItems.Add(orderItem);
             }
 
-            // Add the Order to the database
             await _unitOfWork.Orders.AddAsync(order);
             await _unitOfWork.SaveChangesAsync();
 
@@ -129,6 +128,17 @@ namespace WebShop.Controllers
             {
                 return NotFound(new { message = ex.Message });
             }
+        }
+
+        [HttpGet("most-recent")]
+        public async Task<ActionResult<Order>> GetMostRecentOrder()
+        {
+            var order = _unitOfWork.Orders.GetMostRecentOrder();
+            if (order == null)
+            {
+                return NotFound(new { message = "Order not found" });
+            }
+            return Ok(order);
         }
     }
 }
