@@ -8,10 +8,22 @@ namespace WebShop.DataAccess.Repositories
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
+        private readonly WebShopDbContext _context;
         public ProductRepository(WebShopDbContext context) : base(context)
         {
+            _context = context;
         }
 
-        // Add any additional methods specific to Product if needed
+        public Product GetCheapestProduct()
+        {
+            var cheapestProduct = _context.Set<Product>()
+                .OrderBy(product => product.Price)
+                .FirstOrDefault();
+
+            if (cheapestProduct is null)
+                return null;
+
+            return cheapestProduct;
+        }
     }
 }

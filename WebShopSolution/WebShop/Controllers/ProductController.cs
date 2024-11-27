@@ -115,5 +115,12 @@ namespace WebShop.Controllers
                 return NotFound(new { message = ex.Message });
             }
         }
+
+        [HttpGet("cheapest-product")]
+        public ActionResult<Product> GetCheapestProduct()
+        {
+            var product = _unitOfWork.Products.GetCheapestProduct();
+            return Ok(product);
+        }
     }
 }

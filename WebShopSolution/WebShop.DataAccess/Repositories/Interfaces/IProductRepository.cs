@@ -8,7 +8,7 @@ namespace WebShop.DataAccess.Repositories.Interfaces
     {
         public interface IProductRepository : IRepository<Product>
         {
-            // Add specific methods for Product if needed
+            public Product GetCheapestProduct();
         }
     }
 

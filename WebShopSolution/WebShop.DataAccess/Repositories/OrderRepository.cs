@@ -17,9 +17,14 @@ namespace WebShop.DataAccess.Repositories
 
         public Order GetMostRecentOrder()
         {
-            return _context.Set<Order>()
+            var mostRecentOrder = _context.Set<Order>()
                 .OrderByDescending(order => order.Id)
                 .FirstOrDefault();
+
+            if (mostRecentOrder is null)
+                return null;
+
+            return mostRecentOrder;
         }
 
     }
