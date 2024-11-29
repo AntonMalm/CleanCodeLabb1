@@ -1,11 +1,11 @@
-﻿namespace WebShop.Entities
+﻿namespace WebShop.DataAccess.Entities
 {
     public class Order
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
-        public List<OrderItem> OrderItems { get; set; } // Changed to OrderItem
+        public List<OrderItem> OrderItems { get; set; }
         public double TotalPrice { get; set; }
     }
 }

@@ -1,19 +1,11 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Metrics;
+﻿using WebShop.DataAccess.Entities;
 using WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.Entities;
 
 namespace WebShop.DataAccess.Repositories
 {
-    public class OrderRepository : Repository<Order>, IOrderRepository
+    public class OrderRepository(WebShopDbContext context) : Repository<Order>(context), IOrderRepository
     {
-        private readonly WebShopDbContext _context;
-        public OrderRepository(WebShopDbContext context) : base(context)
-        {
-            _context = context;
-        }
+        private readonly WebShopDbContext _context = context;
 
         public Order GetMostRecentOrder()
         {

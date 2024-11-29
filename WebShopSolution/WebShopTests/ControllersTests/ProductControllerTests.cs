@@ -1,11 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebShop.Controllers;
-using WebShop.DataAccess.Repositories.Interfaces;
+using WebShop.DataAccess.Entities;
 using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.Entities;
 using WebShop.UnitOfWork;
 namespace WebShopTests.ControllersTests;
 
@@ -18,14 +15,11 @@ public class ProductControllerTests
 
     public ProductControllerTests()
     {
-        // Mock the IProductRepository
         _mockProductRepository = new Mock<IProductRepository>();
 
-        // Mock the IUnitOfWork
         _mockUnitOfWork = new Mock<IUnitOfWork>();
         _mockUnitOfWork.Setup(u => u.Products).Returns(_mockProductRepository.Object);
 
-        // Create the ProductController with the mocked UnitOfWork
         _controller = new ProductController(_mockUnitOfWork.Object);
     }
 
@@ -35,8 +29,8 @@ public class ProductControllerTests
         // Arrange
         var products = new List<Product>
         {
-            new Product { Id = 1, Name = "Product1" },
-            new Product { Id = 2, Name = "Product2" }
+            new Product { Id = 1, Name = "Banan" },
+            new Product { Id = 2, Name = "Gurka" }
         };
         _mockProductRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(products);
 
@@ -53,7 +47,7 @@ public class ProductControllerTests
     public async Task GetProduct_ReturnsOkResult_WithProduct()
     {
         // Arrange
-        var product = new Product { Id = 1, Name = "Product1" };
+        var product = new Product { Id = 1, Name = "Banan" };
         _mockProductRepository.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync(product);
 
         // Act
@@ -83,7 +77,7 @@ public class ProductControllerTests
     public async Task AddProduct_ReturnsCreatedAtAction_WithProduct()
     {
         // Arrange
-        var product = new Product { Id = 1, Name = "Product1" };
+        var product = new Product { Id = 1, Name = "Banan" };
         _mockProductRepository.Setup(repo => repo.AddAsync(product)).Returns(Task.CompletedTask);
         _mockUnitOfWork.Setup(u => u.SaveChangesAsync()).Returns(Task.CompletedTask);
 
@@ -129,7 +123,7 @@ public class ProductControllerTests
     public async Task DeleteProduct_ReturnsNoContent_WhenSuccessful()
     {
         // Arrange
-        var product = new Product { Id = 1, Name = "Product1" };
+        var product = new Product { Id = 1, Name = "Banan" };
         _mockProductRepository.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync(product);
         _mockProductRepository.Setup(repo => repo.DeleteAsync(1)).Returns(Task.CompletedTask);
         _mockUnitOfWork.Setup(u => u.SaveChangesAsync()).Returns(Task.CompletedTask);

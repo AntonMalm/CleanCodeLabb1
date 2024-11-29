@@ -1,19 +1,11 @@
-﻿
-
+﻿using WebShop.DataAccess.Entities;
 using WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.Entities;
 
 namespace WebShop.DataAccess.Repositories
 {
-    public class CustomerRepository : Repository<Customer>, ICustomerRepository
+    public class CustomerRepository(WebShopDbContext context) : Repository<Customer>(context), ICustomerRepository
     {
-        private readonly WebShopDbContext _context;
-
-        public CustomerRepository(WebShopDbContext context) : base(context)
-        {
-            _context = context;
-        }
+        private readonly WebShopDbContext _context = context;
 
         public IEnumerable<Customer> GetCustomerBySpecificCountry(string country)
         {

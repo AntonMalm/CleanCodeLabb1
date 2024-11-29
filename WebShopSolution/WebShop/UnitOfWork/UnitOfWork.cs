@@ -1,7 +1,7 @@
 ﻿using WebShop.DataAccess;
+using WebShop.DataAccess.Entities;
 using WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.Entities;
 using WebShop.Notifications;
 
 namespace WebShop.UnitOfWork

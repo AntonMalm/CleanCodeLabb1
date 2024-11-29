@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using WebShop.Controllers;
-using WebShop.Entities;
+using WebShop.DataAccess.Entities;
 using WebShop.UnitOfWork;
-using Xunit;
 
 namespace WebShopTests.ControllersTests
 {
@@ -26,8 +23,8 @@ namespace WebShopTests.ControllersTests
             // Arrange
             var customers = new List<Customer>
             {
-                new Customer { Id = 1, Name = "John Doe" },
-                new Customer { Id = 2, Name = "Jane Smith" }
+                new Customer { Id = 1, Name = "Anton Malm" },
+                new Customer { Id = 2, Name = "Zack Karlsson" }
             };
             _mockUnitOfWork.Setup(u => u.Customers.GetAllAsync()).ReturnsAsync(customers);
 
@@ -44,7 +41,7 @@ namespace WebShopTests.ControllersTests
         public async Task GetCustomer_ReturnsCustomer_WhenIdExists()
         {
             // Arrange
-            var customer = new Customer { Id = 1, Name = "John Doe" };
+            var customer = new Customer { Id = 1, Name = "Anton Malm" };
             _mockUnitOfWork.Setup(u => u.Customers.GetByIdAsync(1)).ReturnsAsync(customer);
 
             // Act
@@ -54,14 +51,14 @@ namespace WebShopTests.ControllersTests
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
             var returnedCustomer = Assert.IsType<Customer>(okResult.Value);
             Assert.Equal(1, returnedCustomer.Id);
-            Assert.Equal("John Doe", returnedCustomer.Name);
+            Assert.Equal("Anton Malm", returnedCustomer.Name);
         }
 
         [Fact]
         public async Task AddCustomer_CreatesNewCustomer()
         {
             // Arrange
-            var customer = new Customer { Id = 1, Name = "John Doe" };
+            var customer = new Customer { Id = 1, Name = "Anton Malm" };
             _mockUnitOfWork.Setup(u => u.Customers.AddAsync(customer)).Returns(Task.CompletedTask);
 
             // Act
@@ -71,14 +68,14 @@ namespace WebShopTests.ControllersTests
             var createdAtResult = Assert.IsType<CreatedAtActionResult>(result);
             var returnedCustomer = Assert.IsType<Customer>(createdAtResult.Value);
             Assert.Equal(1, returnedCustomer.Id);
-            Assert.Equal("John Doe", returnedCustomer.Name);
+            Assert.Equal("Anton Malm", returnedCustomer.Name);
         }
 
         [Fact]
         public async Task UpdateCustomer_UpdatesExistingCustomer()
         {
             // Arrange
-            var updatedCustomer = new Customer { Id = 1, Name = "John Updated" };
+            var updatedCustomer = new Customer { Id = 1, Name = "Anton Updated" };
             _mockUnitOfWork.Setup(u => u.Customers.UpdateAsync(updatedCustomer)).Returns(Task.CompletedTask);
 
             // Act
@@ -107,13 +104,13 @@ namespace WebShopTests.ControllersTests
             // Arrange
             var customers = new List<Customer>
             {
-                new Customer { Id = 1, Name = "John Doe", Country = "USA" },
-                new Customer { Id = 2, Name = "Jane Smith", Country = "USA" }
+                new Customer { Id = 1, Name = "Anton Malm", Country = "SWE" },
+                new Customer { Id = 2, Name = "Zack Karlsson", Country = "SWE" }
             };
-            _mockUnitOfWork.Setup(u => u.Customers.GetCustomerBySpecificCountry("USA")).Returns(customers);
+            _mockUnitOfWork.Setup(u => u.Customers.GetCustomerBySpecificCountry("SWE")).Returns(customers);
 
             // Act
-            var result = _controller.GetCustomersByCountry("USA");
+            var result = _controller.GetCustomersByCountry("SWE");
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result.Result);

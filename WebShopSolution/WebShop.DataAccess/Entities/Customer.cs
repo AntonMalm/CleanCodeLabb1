@@ -1,10 +1,10 @@
-﻿namespace WebShop.Entities
+﻿namespace WebShop.DataAccess.Entities
 {
     public class Customer
     {
-        public int Id { get; set; } // Unikt ID för kunden
-        public string Name { get; set; } // Namn på kunden
-        public string Email { get; set; } // E-postadress för kunden
-        public string Country { get; set; } // Land för kunden
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Country { get; set; }
     }
 }

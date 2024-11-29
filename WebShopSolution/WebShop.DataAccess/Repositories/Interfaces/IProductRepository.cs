@@ -1,8 +1,7 @@
-﻿using WebShop.Entities;
+﻿using WebShop.DataAccess.Entities;
 
 namespace WebShop.DataAccess.Repositories.Interfaces
 {
-    // Gränssnitt för produktrepositoryt enligt Repository Pattern
 
     namespace WebShop.DataAccess.Repositories.Interfaces
     {

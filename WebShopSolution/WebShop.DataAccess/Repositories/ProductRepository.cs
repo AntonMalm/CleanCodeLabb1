@@ -1,18 +1,11 @@
-﻿
-
-using WebShop.DataAccess.Repositories.Interfaces;
+﻿using WebShop.DataAccess.Entities;
 using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.Entities;
 
 namespace WebShop.DataAccess.Repositories
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    public class ProductRepository(WebShopDbContext context) : Repository<Product>(context), IProductRepository
     {
-        private readonly WebShopDbContext _context;
-        public ProductRepository(WebShopDbContext context) : base(context)
-        {
-            _context = context;
-        }
+        private readonly WebShopDbContext _context = context;
 
         public Product GetCheapestProduct()
         {

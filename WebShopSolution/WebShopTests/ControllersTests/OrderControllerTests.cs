@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebShop.Controllers;
+using WebShop.DataAccess.Entities;
 using WebShop.DTOs;
-using WebShop.Entities;
 using WebShop.UnitOfWork;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
 namespace WebShopTests.ControllersTests;
 public class OrderControllerTests
 {

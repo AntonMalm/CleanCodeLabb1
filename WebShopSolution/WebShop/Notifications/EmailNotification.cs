@@ -1,9 +1,8 @@
-﻿using WebShop.Entities;
+﻿using WebShop.DataAccess.Entities;
 using WebShop.UnitOfWork;
 
 namespace WebShop.Notifications
 {
-    // Observer that uses UnitOfWork to send email notifications
     public class EmailNotification : INotificationObserver
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -15,7 +14,7 @@ namespace WebShop.Notifications
 
         public async void Update(Product product)
         {
-            var customers = await _unitOfWork.Customers.GetAllAsync(); // Assuming GetAllAsync exists
+            var customers = await _unitOfWork.Customers.GetAllAsync();
             foreach (var customer in customers)
             {
                 Console.WriteLine($"Email sent to {customer.Name}: New product - {product.Name}");
