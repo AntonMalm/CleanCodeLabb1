@@ -1,8 +1,9 @@
 ﻿using WebShop.DataAccess;
 using WebShop.DataAccess.Entities;
 using WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.Notifications;
+using System.Threading.Tasks;
+using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 
 namespace WebShop.UnitOfWork
 {
@@ -11,33 +12,33 @@ namespace WebShop.UnitOfWork
         public IProductRepository Products { get; private set; }
         public IOrderRepository Orders { get; private set; }
         public ICustomerRepository Customers { get; private set; }
+        public IPaymentMethod PaymentMethod { get; private set; }
 
         private readonly ProductSubject _productSubject;
-        private readonly WebShopDbContext _context; // Assuming you're using Entity Framework Core
+        private readonly WebShopDbContext _context;
 
         public UnitOfWork(
             IProductRepository productRepository,
             IOrderRepository orderRepository,
             ICustomerRepository customerRepository,
+            IPaymentMethod paymentMethod,
             WebShopDbContext context,
             ProductSubject productSubject = null)
         {
             Products = productRepository;
             Orders = orderRepository;
             Customers = customerRepository;
+            PaymentMethod = paymentMethod;
             _context = context;
             _productSubject = productSubject ?? new ProductSubject();
             _productSubject.Attach(new EmailNotification(this));
         }
 
-
-        // Method to notify observers when a product is added
         public void NotifyProductAdded(Product product)
         {
             _productSubject.Notify(product);
         }
 
-        // Method to save changes to the database
         public async Task SaveChangesAsync()
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -53,7 +54,6 @@ namespace WebShop.UnitOfWork
             }
         }
 
-        // Dispose method for cleanup
         public void Dispose()
         {
             _context.Dispose();

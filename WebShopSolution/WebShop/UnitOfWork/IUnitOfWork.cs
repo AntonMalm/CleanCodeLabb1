@@ -9,6 +9,7 @@ namespace WebShop.UnitOfWork
         IProductRepository Products { get; }
         IOrderRepository Orders { get; }
         ICustomerRepository Customers { get; }
+        IPaymentMethod PaymentMethod { get; }
         Task SaveChangesAsync();
         void NotifyProductAdded(Product product);
     }

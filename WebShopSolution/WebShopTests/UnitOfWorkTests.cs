@@ -2,9 +2,9 @@ using Moq;
 using WebShop.Notifications;
 using WebShop.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.DataAccess;
 using WebShop.DataAccess.Entities;
+using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 
 namespace WebShop.Tests
 {
@@ -17,7 +17,6 @@ namespace WebShop.Tests
             var product = new Product { Id = 1, Name = "Test" };
 
             var mockObserver = new Mock<INotificationObserver>();
-
             var productSubject = new ProductSubject();
             productSubject.Attach(mockObserver.Object);
 
@@ -25,12 +24,15 @@ namespace WebShop.Tests
             var mockOrderRepository = new Mock<IOrderRepository>();
             var mockCustomerRepository = new Mock<ICustomerRepository>();
 
+            var mockPaymentMethod = new Mock<IPaymentMethod>();
+
             var mockContext = new Mock<WebShopDbContext>(new DbContextOptions<WebShopDbContext>());
 
             var unitOfWork = new UnitOfWork.UnitOfWork(
                 mockProductRepository.Object,
                 mockOrderRepository.Object,
                 mockCustomerRepository.Object,
+                mockPaymentMethod.Object,
                 mockContext.Object,
                 productSubject
             );

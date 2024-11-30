@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using WebShop.DataAccess;
+using WebShop.DataAccess.Payments;
 using WebShop.DataAccess.Repositories;
 using WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.Notifications;
+using WebShop.Payments;
 using WebShop.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,11 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IPaymentProcessor, PaymentProcessor>();
+builder.Services.AddScoped<IPaymentMethod, SwishPayment>();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
 builder.Services.AddTransient<INotificationObserver, EmailNotification>();
 

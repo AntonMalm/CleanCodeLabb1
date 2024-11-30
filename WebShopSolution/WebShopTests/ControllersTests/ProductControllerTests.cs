@@ -4,9 +4,8 @@ using WebShop.Controllers;
 using WebShop.DataAccess.Entities;
 using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.UnitOfWork;
+
 namespace WebShopTests.ControllersTests;
-
-
 public class ProductControllerTests
 {
     private readonly Mock<IProductRepository> _mockProductRepository;
