@@ -1,6 +1,6 @@
-﻿using WebShop.DataAccess.Entities;
+﻿using WebShopDataAccess.Entities;
 
-namespace WebShop.DataAccess.Repositories.Interfaces
+namespace WebShopDataAccess.Repositories.Interfaces
 {
     public interface ICustomerRepository : IRepository<Customer>
     {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebShop.DataAccess.Payments;
 using WebShop.Payments;
 using WebShop.UnitOfWork;
 

@@ -1,13 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using WebShop.DataAccess;
-using WebShop.DataAccess.Payments;
-using WebShop.DataAccess.Repositories;
-using WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
 using WebShop.Notifications;
 using WebShop.Payments;
 using WebShop.UnitOfWork;
+using WebShopDataAccess;
+using WebShopDataAccess.Repositories;
+using WebShopDataAccess.Repositories.Interfaces;
+using WebShopDataAccess.Repositories.Interfaces.WebShopDataAccess.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

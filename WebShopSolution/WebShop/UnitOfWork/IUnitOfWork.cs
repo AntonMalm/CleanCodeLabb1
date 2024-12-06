@@ -1,6 +1,7 @@
-﻿using WebShop.DataAccess.Entities;
-using WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
+﻿using WebShop.Payments;
+using WebShopDataAccess.Entities;
+using WebShopDataAccess.Repositories.Interfaces;
+using WebShopDataAccess.Repositories.Interfaces.WebShopDataAccess.Repositories.Interfaces;
 
 namespace WebShop.UnitOfWork
 {

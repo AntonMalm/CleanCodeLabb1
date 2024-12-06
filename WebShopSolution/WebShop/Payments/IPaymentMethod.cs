@@ -1,6 +1,4 @@
-﻿using WebShop.Payments;
-
-namespace WebShop.DataAccess.Repositories.Interfaces;
+﻿namespace WebShop.Payments;
 
 public interface IPaymentMethod
 {

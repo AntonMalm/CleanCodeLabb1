@@ -1,12 +1,13 @@
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using WebShop.Notifications;
-using WebShop.DataAccess.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using WebShop.DataAccess;
-using WebShop.DataAccess.Entities;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
+using WebShop.Payments;
+using WebShopDataAccess;
+using WebShopDataAccess.Entities;
+using WebShopDataAccess.Repositories.Interfaces;
+using WebShopDataAccess.Repositories.Interfaces.WebShopDataAccess.Repositories.Interfaces;
 
-namespace WebShop.Tests
+namespace WebShopTests
 {
     public class UnitOfWorkTests
     {
@@ -28,7 +29,7 @@ namespace WebShop.Tests
 
             var mockContext = new Mock<WebShopDbContext>(new DbContextOptions<WebShopDbContext>());
 
-            var unitOfWork = new UnitOfWork.UnitOfWork(
+            var unitOfWork = new WebShop.UnitOfWork.UnitOfWork(
                 mockProductRepository.Object,
                 mockOrderRepository.Object,
                 mockCustomerRepository.Object,

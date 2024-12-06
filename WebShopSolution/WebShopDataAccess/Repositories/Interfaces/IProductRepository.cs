@@ -1,9 +1,9 @@
-﻿using WebShop.DataAccess.Entities;
+﻿using WebShopDataAccess.Entities;
 
-namespace WebShop.DataAccess.Repositories.Interfaces
+namespace WebShopDataAccess.Repositories.Interfaces
 {
 
-    namespace WebShop.DataAccess.Repositories.Interfaces
+    namespace WebShopDataAccess.Repositories.Interfaces
     {
         public interface IProductRepository : IRepository<Product>
         {

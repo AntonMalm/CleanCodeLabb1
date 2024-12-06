@@ -1,7 +1,7 @@
-﻿using WebShop.DataAccess.Entities;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
+﻿using WebShopDataAccess.Entities;
+using WebShopDataAccess.Repositories.Interfaces.WebShopDataAccess.Repositories.Interfaces;
 
-namespace WebShop.DataAccess.Repositories
+namespace WebShopDataAccess.Repositories
 {
     public class ProductRepository(WebShopDbContext context) : Repository<Product>(context), IProductRepository
     {

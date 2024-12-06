@@ -1,6 +1,4 @@
-﻿using WebShop.DataAccess.Repositories.Interfaces;
-
-namespace WebShop.DataAccess.Payments
+﻿namespace WebShop.Payments
 {
     public class SwishPayment : IPaymentMethod
     {

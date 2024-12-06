@@ -1,4 +1,4 @@
-﻿namespace WebShop.DataAccess.Entities
+﻿namespace WebShopDataAccess.Entities
 {
     public class Order
     {

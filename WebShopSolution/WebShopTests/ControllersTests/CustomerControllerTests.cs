@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using WebShop.Controllers;
-using WebShop.DataAccess.Entities;
 using WebShop.UnitOfWork;
+using WebShopDataAccess.Entities;
 
 namespace WebShopTests.ControllersTests
 {

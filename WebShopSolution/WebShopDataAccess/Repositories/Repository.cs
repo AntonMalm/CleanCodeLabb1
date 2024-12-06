@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebShop.DataAccess.Repositories.Interfaces;
+using WebShopDataAccess.Repositories.Interfaces;
 
-namespace WebShop.DataAccess.Repositories
+namespace WebShopDataAccess.Repositories
 {
     public class Repository<T>(WebShopDbContext context) : IRepository<T>
         where T : class

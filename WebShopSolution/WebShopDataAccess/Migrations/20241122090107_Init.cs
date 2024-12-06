@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WebShop.DataAccess.Migrations
+namespace WebShopDataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class Init : Migration

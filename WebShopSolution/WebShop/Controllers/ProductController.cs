@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebShop.UnitOfWork;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebShop.DataAccess.Entities;
+using WebShopDataAccess.Entities;
 
 namespace WebShop.Controllers
 {

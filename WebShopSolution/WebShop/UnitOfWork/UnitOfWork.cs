@@ -1,9 +1,9 @@
-﻿using WebShop.DataAccess;
-using WebShop.DataAccess.Entities;
-using WebShop.DataAccess.Repositories.Interfaces;
-using WebShop.Notifications;
-using System.Threading.Tasks;
-using WebShop.DataAccess.Repositories.Interfaces.WebShop.DataAccess.Repositories.Interfaces;
+﻿using WebShop.Notifications;
+using WebShop.Payments;
+using WebShopDataAccess;
+using WebShopDataAccess.Entities;
+using WebShopDataAccess.Repositories.Interfaces;
+using WebShopDataAccess.Repositories.Interfaces.WebShopDataAccess.Repositories.Interfaces;
 
 namespace WebShop.UnitOfWork
 {

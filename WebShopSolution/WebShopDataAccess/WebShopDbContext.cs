@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebShop.DataAccess.Entities;
+using WebShopDataAccess.Entities;
 
-namespace WebShop.DataAccess
+namespace WebShopDataAccess
 {
     public class WebShopDbContext : DbContext
     {

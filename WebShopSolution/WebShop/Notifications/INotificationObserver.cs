@@ -1,4 +1,4 @@
-﻿using WebShop.DataAccess.Entities;
+﻿using WebShopDataAccess.Entities;
 
 namespace WebShop.Notifications
 {

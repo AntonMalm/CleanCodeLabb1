@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebShop.DataAccess.Entities;
 using WebShop.UnitOfWork;
+using WebShopDataAccess.Entities;
 
 namespace WebShop.Controllers
 {

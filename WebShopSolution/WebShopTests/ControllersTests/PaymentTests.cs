@@ -1,5 +1,4 @@
-﻿using WebShop.DataAccess.Payments;
-using WebShop.Payments;
+﻿using WebShop.Payments;
 
 
 namespace WebShopTests.ControllersTests;
